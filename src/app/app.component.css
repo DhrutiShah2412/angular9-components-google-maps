@@ -2,6 +2,15 @@ p {
   font-family: Lato;
 }
 
+.title-div {
+  text-align: center;
+  height: 100px;
+}
+
+.title-img {
+  padding: 5px;
+}
+
 .inner-div {
   margin-top: 30px; 
   border: 1px solid; 
