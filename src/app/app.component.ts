@@ -7,7 +7,7 @@ import { GoogleMap, MapInfoWindow, MapMarker } from "@angular/google-maps";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  name = "Angular";
+  name = "Angular9 Components - Google Maps";
 
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow;
@@ -24,6 +24,7 @@ export class AppComponent {
   };
   markers = [];
   infoContent = "";
+  display?: google.maps.LatLngLiteral;
 
   ngOnInit() {
     navigator.geolocation.getCurrentPosition(x => {
@@ -37,7 +38,7 @@ export class AppComponent {
           lng: x.coords.longitude
         },
         label: {
-          color: "blue",
+          color: "#00bfa9",
           text: "Marker Label"
         },
         title: "Marker Title",
@@ -59,7 +60,7 @@ export class AppComponent {
         lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10
       },
       label: {
-        color: "red",
+        color: "#608ff3",
         text: "Marker label " + (this.markers.length + 1)
       },
       title: "Marker title " + (this.markers.length + 1),
@@ -82,13 +83,13 @@ export class AppComponent {
     console.log(event);
   }
 
-  logCenter() {
-    console.log(JSON.stringify(this.map.getCenter()));
-  }
-
   removeLastMarker() {
     if (this.markers.length != 1) {
       this.markers.pop();
     }
+  }
+
+  move(event: google.maps.MouseEvent) {
+    this.display = event.latLng.toJSON();
   }
 }

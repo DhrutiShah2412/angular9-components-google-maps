@@ -1,28 +1,24 @@
 <hello name="{{ name }}"></hello>
-<google-map
-  height="500px"
-  width="100%"
-  [zoom]="zoom"
-  [center]="center"
-  [options]="options"
-  (mapClick)="click($event)"
-  (mapRightclick)="removeLastMarker()"
->
-  <map-marker
-    #markerElem
-    *ngFor="let marker of markers"
-    [position]="marker.position"
-    [label]="marker.label"
-    [title]="marker.title"
-    [options]="marker.options"
-    (mapClick)="openInfo(markerElem, marker.info)"
-  >
-  </map-marker>
+<google-map height="500px" width="100%" [zoom]="zoom" [center]="center" [options]="options" (mapClick)="click($event)"
+	(mapRightclick)="removeLastMarker()" (mapMousemove)="move($event)">
+	<map-marker #markerElem *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label"
+		[title]="marker.title" [options]="marker.options" (mapClick)="openInfo(markerElem, marker.info)">
+	</map-marker>
 
-  <map-info-window>{{ infoContent }}</map-info-window>
+	<map-info-window>{{ infoContent }}</map-info-window>
 </google-map>
 
-<button (click)="zoomIn()">Zoom in</button>
-<button (click)="zoomOut()">Zoom out</button>
-<button (click)="logCenter()">Log center</button>
-<button (click)="addMarker()">Add marker</button>
+<br />
+<div class="container">
+	<div class="jumbotron" style="text-align: center;">
+		<button type="button" class="btn btn-warning btn-lg" (click)="zoomIn()" style="margin: 5px;">Zoom in</button>
+		<button type="button" class="btn btn-success btn-lg" (click)="zoomOut()" style="margin: 5px;">Zoom out</button>
+		<button type="button" class="btn btn-info btn-lg" (click)="addMarker()" style="margin: 5px;">Add marker</button>
+
+		<div class="inner-div">
+        <span class="lat-long-font">Latitude: {{display?.lat}} </span>
+        <span class="lat-long-font">|</span>
+        <span class="lat-long-font"> Longitude: {{display?.lng}} </span>
+		</div>
+	</div>
+</div>
