@@ -1,13 +1,13 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from "@angular/core";
 import { GoogleMap, MapInfoWindow, MapMarker } from "@angular/google-maps";
 
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styleUrls: [ './app.component.css' ]
+  selector: "my-app",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
-export class AppComponent  {
-  name = 'Angular';
+export class AppComponent {
+  name = "Angular";
 
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow;
@@ -20,7 +20,7 @@ export class AppComponent  {
     disableDoubleClickZoom: true,
     //mapTypeId: "hybrid",
     maxZoom: 15,
-    minZoom: 8,
+    minZoom: 8
   };
   markers = [];
   infoContent = "";
@@ -50,28 +50,27 @@ export class AppComponent  {
   }
   openInfo(marker: MapMarker, info) {
     this.infoContent = info;
-     this.info.open(marker);
-  
- }
+    this.info.open(marker);
+  }
   addMarker() {
     this.markers.push({
       position: {
         lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
-        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
+        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10
       },
       label: {
-        color: 'red',
-        text: 'Marker label ' + (this.markers.length + 1),
+        color: "red",
+        text: "Marker label " + (this.markers.length + 1)
       },
-      title: 'Marker title ' + (this.markers.length + 1),
-      info: 'Marker info ' + (this.markers.length + 1),
+      title: "Marker title " + (this.markers.length + 1),
+      info: "Marker info " + (this.markers.length + 1),
       options: {
-        animation: google.maps.Animation.DROP,
-      },
+        animation: google.maps.Animation.DROP
+      }
     });
   }
 
-   zoomIn() {
+  zoomIn() {
     if (this.zoom < this.options.maxZoom) this.zoom++;
   }
 
@@ -85,5 +84,11 @@ export class AppComponent  {
 
   logCenter() {
     console.log(JSON.stringify(this.map.getCenter()));
+  }
+
+  removeLastMarker() {
+    if (this.markers.length != 1) {
+      this.markers.pop();
+    }
   }
 }

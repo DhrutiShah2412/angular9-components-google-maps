@@ -6,6 +6,7 @@
   [center]="center"
   [options]="options"
   (mapClick)="click($event)"
+  (mapRightclick)="removeLastMarker()"
 >
   <map-marker
     #markerElem
