@@ -1,4 +1,7 @@
-<hello name="{{ name }}"></hello>
+<!-- <hello name="{{ name }}"></hello> -->
+<div style="text-align: center;">
+  <img src="https://cdn.jsdelivr.net/gh/DhrutiShah2412/angular9-components-google-maps@master/src/all-four-1_square.png" />
+</div>
 <google-map height="500px" width="100%" [zoom]="zoom" [center]="center" [options]="options" (mapClick)="click($event)"
 	(mapRightclick)="removeLastMarker()" (mapMousemove)="move($event)">
 	<map-marker #markerElem *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label"
