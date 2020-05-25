@@ -49,10 +49,12 @@ export class AppComponent {
       });
     });
   }
+
   openInfo(marker: MapMarker, info) {
     this.infoContent = info;
     this.info.open(marker);
   }
+  
   addMarker() {
     this.markers.push({
       position: {
